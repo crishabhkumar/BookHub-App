@@ -47,9 +47,11 @@ class MainActivity : AppCompatActivity() {
 
             when (it.itemId){
                 R.id.dashboard ->{
-                    Toast.makeText(this@MainActivity,
-                        "Clicked on dashboard",
-                        Toast.LENGTH_SHORT).show()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.frame,DashboardFragment())
+                        .commit()
+
+                    drawerLayout.close()
                 }
                 R.id.favourites ->{
                     Toast.makeText(this@MainActivity,
