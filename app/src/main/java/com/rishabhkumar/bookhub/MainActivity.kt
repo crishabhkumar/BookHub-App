@@ -20,6 +20,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var frameLayout : FrameLayout
     lateinit var navigationView : NavigationView
 
+    var previousMenuItem :MenuItem ?=  null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +34,17 @@ class MainActivity : AppCompatActivity() {
         navigationView = findViewById(R.id.navigation_view)
 
         setUpToolbar()
+//
+//        supportFragmentManager.beginTransaction()
+//            .replace(R.id.frame,DashboardFragment())
+//            .addToBackStack("Dashboard")
+//            .commit()
+//
+//        supportActionBar?.title = "Dashboard"
+
+        //created the function for upper codes
+        openDashboard()
+
 
         val actionBarDrawerToggle = ActionBarDrawerToggle(this@MainActivity,
             drawerLayout,
@@ -45,6 +58,16 @@ class MainActivity : AppCompatActivity() {
 
         navigationView.setNavigationItemSelectedListener{
 
+
+            if(previousMenuItem != null){
+                previousMenuItem?.isChecked = false
+            }
+
+            it.isCheckable = true
+            it.isChecked = true
+            previousMenuItem = it
+
+
             when (it.itemId){
                 R.id.dashboard ->{
 //                    Toast.makeText(this@MainActivity,
@@ -52,7 +75,11 @@ class MainActivity : AppCompatActivity() {
 //                        Toast.LENGTH_SHORT).show()
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.frame,DashboardFragment())
+//                        .addToBackStack("Dashboard")
                         .commit()
+
+
+                    supportActionBar?.title = "Dashboard"
 
                     drawerLayout.close()
 
@@ -61,16 +88,40 @@ class MainActivity : AppCompatActivity() {
 //                    Toast.makeText(this@MainActivity,
 //                        "Clicked on favourites",
 //                        Toast.LENGTH_SHORT).show()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.frame,FavouritesFragment())
+//                        .addToBackStack("Favourites")
+                        .commit()
+
+                    supportActionBar?.title = "Favourites"
+                    drawerLayout.close()
+
                 }
                 R.id.profile ->{
 //                    Toast.makeText(this@MainActivity,
 //                        "Clicked on profile",
 //                        Toast.LENGTH_SHORT).show()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.frame,ProfileFragment())
+//                        .addToBackStack("Profile")
+                        .commit()
+
+                    supportActionBar?.title = "Profile"
+                    drawerLayout.close()
                 }
                 R.id.about ->{
 //                    Toast.makeText(this@MainActivity,
 //                        "Clicked on about",
 //                        Toast.LENGTH_SHORT).show()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.frame,AboutFragment())
+//                        .addToBackStack("About")
+                        .commit()
+
+
+                    supportActionBar?.title = "About App"
+
+                    drawerLayout.close()
                 }
             }
 
@@ -102,6 +153,31 @@ class MainActivity : AppCompatActivity() {
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+
+    fun openDashboard(){
+        val fragment = DashboardFragment()
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.frame,fragment)
+        transaction.commit()
+
+        navigationView.setCheckedItem(R.id.dashboard)
+
+        supportActionBar?.title = "Dashboard"
+    }
+
+
+    override fun onBackPressed() {
+        val frag = supportFragmentManager.findFragmentById(R.id.frame)
+
+        when(frag){
+            !is DashboardFragment -> openDashboard()
+
+            else -> super.onBackPressed( )
+
+        }
+
     }
 
 

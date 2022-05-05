@@ -9,8 +9,10 @@
         <entry key="..\:/BookHub/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
         <entry key="..\:/BookHub/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/BookHub/app/src/main/res/layout/drawer_header.xml" value="0.132" />
+        <entry key="..\:/BookHub/app/src/main/res/layout/fragment_about.xml" value="0.15896739130434784" />
         <entry key="..\:/BookHub/app/src/main/res/layout/fragment_dashboard.xml" value="0.1" />
         <entry key="..\:/BookHub/app/src/main/res/layout/fragment_favourites.xml" value="0.15896739130434784" />
+        <entry key="..\:/BookHub/app/src/main/res/layout/fragment_profile.xml" value="0.1" />
         <entry key="..\:/BookHub/app/src/main/res/menu/menu_drawer.xml" value="0.2" />
       </map>
     </option>
