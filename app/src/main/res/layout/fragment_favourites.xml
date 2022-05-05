@@ -3,15 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DashboardFragment">
+    tools:context=".FavouritesFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+
     <TextView
-        android:id="@+id/txtDashboard"
+        android:id="@+id/txtFavourites"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="10dp"
-        android:text="@string/dashboard_fragment"
+        android:text="@string/favourites_fragment"
         android:textSize="20sp" />
 
 </RelativeLayout>

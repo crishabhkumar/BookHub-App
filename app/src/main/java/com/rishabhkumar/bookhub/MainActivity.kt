@@ -47,26 +47,30 @@ class MainActivity : AppCompatActivity() {
 
             when (it.itemId){
                 R.id.dashboard ->{
+//                    Toast.makeText(this@MainActivity,
+//                        "Clicked on Dashboard",
+//                        Toast.LENGTH_SHORT).show()
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.frame,DashboardFragment())
                         .commit()
 
                     drawerLayout.close()
+
                 }
                 R.id.favourites ->{
-                    Toast.makeText(this@MainActivity,
-                        "Clicked on favourites",
-                        Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this@MainActivity,
+//                        "Clicked on favourites",
+//                        Toast.LENGTH_SHORT).show()
                 }
                 R.id.profile ->{
-                    Toast.makeText(this@MainActivity,
-                        "Clicked on profile",
-                        Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this@MainActivity,
+//                        "Clicked on profile",
+//                        Toast.LENGTH_SHORT).show()
                 }
                 R.id.about ->{
-                    Toast.makeText(this@MainActivity,
-                        "Clicked on about",
-                        Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this@MainActivity,
+//                        "Clicked on about",
+//                        Toast.LENGTH_SHORT).show()
                 }
             }
 
@@ -78,6 +82,8 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+
+    //function for setting up the tool bar
     fun setUpToolbar() {
         setSupportActionBar(toolbar)
         supportActionBar?.title = "Toolbar Title"
@@ -86,6 +92,8 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+
+    //function for setting up the menu title in left side
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
 
