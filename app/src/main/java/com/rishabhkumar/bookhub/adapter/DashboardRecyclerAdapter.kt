@@ -5,11 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.rishabhkumar.bookhub.R
 import com.rishabhkumar.bookhub.model.Book
-import org.w3c.dom.Text
 
 class DashboardRecyclerAdapter(val context: Context,val itemList:ArrayList<Book> ) : RecyclerView.Adapter<DashboardRecyclerAdapter.DashboardViewHolder>(){
 
@@ -33,6 +34,12 @@ class DashboardRecyclerAdapter(val context: Context,val itemList:ArrayList<Book>
 //        holder.imgBookImage.setBackgroundResource(book.bookImage)
 
         holder.imgBookImage.setImageResource(book.bookImage)
+
+        //to make each row clickable
+        holder.llContent.setOnClickListener{
+            Toast.makeText(context,"You clicked on ${holder.txtBookName.text}",
+            Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun getItemCount(): Int {
@@ -48,7 +55,7 @@ class DashboardRecyclerAdapter(val context: Context,val itemList:ArrayList<Book>
         val txtBookPrice : TextView = view.findViewById(R.id.txtBookPrice)
         val txtRating : TextView = view.findViewById(R.id.txtRating)
         val imgBookImage : ImageView = view.findViewById(R.id.imgBook)
-
+        val llContent : LinearLayout = view.findViewById(R.id.llContent)
     }
 
 
