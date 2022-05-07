@@ -37,7 +37,7 @@ class DashboardRecyclerAdapter(val context: Context,val itemList:ArrayList<Book>
 //        holder.imgBookImage.setImageResource(book.bookImage)
 
         //picaso code for getting the images from the link which was given by api in json file
-        Picasso.get().load(book.bookImage).into(holder.imgBookImage)
+        Picasso.get().load(book.bookImage).error(R.drawable.default_image).into(holder.imgBookImage)
         //to make each row clickable
         holder.llContent.setOnClickListener{
             Toast.makeText(context,"You clicked on ${holder.txtBookName.text}",
