@@ -6,12 +6,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.rishabhkumar.bookhub.R
 import com.rishabhkumar.bookhub.adapter.DashboardRecyclerAdapter
 import com.rishabhkumar.bookhub.model.Book
+import com.rishabhkumar.bookhub.util.ConnectionManager
 
 
 class DashboardFragment : Fragment() {
@@ -51,6 +55,9 @@ class DashboardFragment : Fragment() {
         )
 
 
+
+    lateinit var btnCheckInternet : Button
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -77,6 +84,42 @@ class DashboardFragment : Fragment() {
                 (layoutManager as LinearLayoutManager).orientation
             )
         )
+
+        btnCheckInternet = view.findViewById(R.id.btnCheckInternet)
+        btnCheckInternet.setOnClickListener {
+            if(ConnectionManager().checkConnectivity(activity as Context)){
+                //internet is available
+                val dialog = AlertDialog.Builder(activity as Context)
+                dialog.setTitle("Success")
+                dialog.setMessage("Internet Connection found")
+                dialog.setPositiveButton("Ok"){
+                    text,listener ->
+                    //do nothing
+                }
+                dialog.setNegativeButton("Cancel"){
+                    text,listener->
+                    //do nothing
+                }
+                dialog.create()
+                dialog.show()
+
+            }else{
+                //internet is not available
+                val dialog = AlertDialog.Builder(activity as Context)
+                dialog.setTitle("Failed")
+                dialog.setMessage("Internet Connection not found")
+                dialog.setPositiveButton("Ok"){
+                        text,listener ->
+                    //do nothing
+                }
+                dialog.setNegativeButton("Cancel"){
+                        text,listener->
+                    //do nothing
+                }
+                dialog.create()
+                dialog.show()
+            }
+        }
 
         return view
     }
