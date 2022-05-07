@@ -23,16 +23,17 @@
         android:padding="10dp" />
 
 
-    <Button
-        android:id="@+id/btnCheckInternet"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:text="Check Internet"
-        android:backgroundTint="@color/design_default_color_secondary_variant"
-        android:textStyle="bold"
-        android:textSize="18sp"
-        android:textColor="#ffffff"/>
+<!--    button used for checking whether internet got connected or not-->
+<!--    <Button-->
+<!--        android:id="@+id/btnCheckInternet"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:text="Check Internet"-->
+<!--        android:backgroundTint="@color/design_default_color_secondary_variant"-->
+<!--        android:textStyle="bold"-->
+<!--        android:textSize="18sp"-->
+<!--        android:textColor="#ffffff"/>-->
 
 
 </RelativeLayout>

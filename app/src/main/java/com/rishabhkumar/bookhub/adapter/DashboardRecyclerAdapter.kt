@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.rishabhkumar.bookhub.R
 import com.rishabhkumar.bookhub.model.Book
+import com.squareup.picasso.Picasso
 
 class DashboardRecyclerAdapter(val context: Context,val itemList:ArrayList<Book> ) : RecyclerView.Adapter<DashboardRecyclerAdapter.DashboardViewHolder>(){
 
@@ -29,12 +30,14 @@ class DashboardRecyclerAdapter(val context: Context,val itemList:ArrayList<Book>
         val book = itemList[position]
         holder.txtBookName.text = book.bookName
         holder.txtBookAuthor.text = book.bookAuthor
-        holder.txtBookPrice.text = book.bookCost
+        holder.txtBookPrice.text = book.bookPrice
         holder.txtRating.text = book.bookRating
 //        holder.imgBookImage.setBackgroundResource(book.bookImage)
 
-        holder.imgBookImage.setImageResource(book.bookImage)
+//        holder.imgBookImage.setImageResource(book.bookImage)
 
+        //picaso code for getting the images from the link which was given by api in json file
+        Picasso.get().load(book.bookImage).into(holder.imgBookImage)
         //to make each row clickable
         holder.llContent.setOnClickListener{
             Toast.makeText(context,"You clicked on ${holder.txtBookName.text}",

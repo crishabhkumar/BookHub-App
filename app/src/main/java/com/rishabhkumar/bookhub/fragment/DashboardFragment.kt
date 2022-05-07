@@ -64,6 +64,7 @@ class DashboardFragment : Fragment() {
 
 
     lateinit var btnCheckInternet : Button
+    val bookInfoList = arrayListOf<Book>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -76,67 +77,86 @@ class DashboardFragment : Fragment() {
 
         layoutManager = LinearLayoutManager(activity)
 
-        recyclerAdapter = DashboardRecyclerAdapter(activity as Context,bookInfoList)
 
-
-        recyclerDashboard.adapter = recyclerAdapter
-
-        recyclerDashboard.layoutManager = layoutManager
-
-
-        //function to make row separation between items
-        recyclerDashboard.addItemDecoration(
-            DividerItemDecoration(
-                recyclerDashboard.context,
-                (layoutManager as LinearLayoutManager).orientation
-            )
-        )
-
-        btnCheckInternet = view.findViewById(R.id.btnCheckInternet)
-        btnCheckInternet.setOnClickListener {
-            if(ConnectionManager().checkConnectivity(activity as Context)){
-                //internet is available
-                val dialog = AlertDialog.Builder(activity as Context)
-                dialog.setTitle("Success")
-                dialog.setMessage("Internet Connection found")
-                dialog.setPositiveButton("Ok"){
-                    text,listener ->
-                    //do nothing
-                }
-                dialog.setNegativeButton("Cancel"){
-                    text,listener->
-                    //do nothing
-                }
-                dialog.create()
-                dialog.show()
-
-            }else{
-                //internet is not available
-                val dialog = AlertDialog.Builder(activity as Context)
-                dialog.setTitle("Failed")
-                dialog.setMessage("Internet Connection not found")
-                dialog.setPositiveButton("Ok"){
-                        text,listener ->
-                    //do nothing
-                }
-                dialog.setNegativeButton("Cancel"){
-                        text,listener->
-                    //do nothing
-                }
-                dialog.create()
-                dialog.show()
-            }
-        }
+        //to check whether app got connected with internet or not
+//        btnCheckInternet = view.findViewById(R.id.btnCheckInternet)
+//        btnCheckInternet.setOnClickListener {
+//            if(ConnectionManager().checkConnectivity(activity as Context)){
+//                //internet is available
+//                val dialog = AlertDialog.Builder(activity as Context)
+//                dialog.setTitle("Success")
+//                dialog.setMessage("Internet Connection found")
+//                dialog.setPositiveButton("Ok"){
+//                    text,listener ->
+//                    //do nothing
+//                }
+//                dialog.setNegativeButton("Cancel"){
+//                    text,listener->
+//                    //do nothing
+//                }
+//                dialog.create()
+//                dialog.show()
+//
+//            }else{
+//                //internet is not available
+//                val dialog = AlertDialog.Builder(activity as Context)
+//                dialog.setTitle("Failed")
+//                dialog.setMessage("Internet Connection not found")
+//                dialog.setPositiveButton("Ok"){
+//                        text,listener ->
+//                    //do nothing
+//                }
+//                dialog.setNegativeButton("Cancel"){
+//                        text,listener->
+//                    //do nothing
+//                }
+//                dialog.create()
+//                dialog.show()
+//            }
+//        }
 
 
         val queue = Volley.newRequestQueue(activity as Context)
 
         val url = "http://13.235.250.119/v1/book/fetch_books/"
 
-        val jsonObjectRequest = object : JsonObjectRequest(Request.Method.GET,
-            url,null, Response.Listener{
+        val jsonObjectRequest = object : JsonObjectRequest(Request.Method.GET, url,null, Response.Listener{
             //here we will handle the response
-                println("Response is $it")
+            val sucsess = it.getBoolean("success")
+            if(sucsess){
+                val data = it.getJSONArray("data")
+                for(i in 0 until data.length()){
+                    val bookJsonObject = data.getJSONObject(i)
+                    val bookObject = Book(
+                        bookJsonObject.getString("book_id"),
+                        bookJsonObject.getString("name"),
+                        bookJsonObject.getString("author"),
+                        bookJsonObject.getString("rating"),
+                        bookJsonObject.getString("price"),
+                        bookJsonObject.getString("image")
+                        )
+                    bookInfoList.add(bookObject)
+                    recyclerAdapter = DashboardRecyclerAdapter(activity as Context,bookInfoList)
+
+
+                    recyclerDashboard.adapter = recyclerAdapter
+
+                    recyclerDashboard.layoutManager = layoutManager
+
+
+                    //function to make row separation between items
+                    recyclerDashboard.addItemDecoration(
+                        DividerItemDecoration(
+                            recyclerDashboard.context,
+                            (layoutManager as LinearLayoutManager).orientation
+                        )
+                    )
+                }
+            }else{
+                Toast.makeText(activity as Context,"Some error occured!!!",Toast.LENGTH_SHORT).show()
+            }
+            // println("Response is $it")
+
         },Response.ErrorListener {
             //here we will handle the errors
                 println("Error is $it")
