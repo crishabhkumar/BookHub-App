@@ -5,35 +5,36 @@
     android:layout_height="match_parent"
     tools:context=".fragment.DashboardFragment">
 
-    <TextView
-        android:id="@+id/txtDashboard"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="@string/dashboard_fragment"
-        android:textSize="20sp" />
+<!--    <TextView-->
+<!--        android:id="@+id/txtDashboard"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:padding="10dp"-->
+<!--        android:text="@string/dashboard_fragment"-->
+<!--        android:textSize="20sp" />-->
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerDashboard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txtDashboard"
         android:layout_margin="5dp"
         android:padding="10dp" />
+<!--        android:layout_below="@+id/txtDashboard"-->
+
 
 
 <!--    button used for checking whether internet got connected or not-->
-    <Button
-        android:id="@+id/btnCheckInternet"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:text="Check Internet"
-        android:backgroundTint="@color/design_default_color_secondary_variant"
-        android:textStyle="bold"
-        android:textSize="18sp"
-        android:textColor="#ffffff"/>
+<!--    <Button-->
+<!--        android:id="@+id/btnCheckInternet"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:text="Check Internet"-->
+<!--        android:backgroundTint="@color/design_default_color_secondary_variant"-->
+<!--        android:textStyle="bold"-->
+<!--        android:textSize="18sp"-->
+<!--        android:textColor="#ffffff"/>-->
 
 
     <RelativeLayout
@@ -41,11 +42,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#fff">
+
         <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"/>
+            android:layout_centerInParent="true" />
     </RelativeLayout>
 
 

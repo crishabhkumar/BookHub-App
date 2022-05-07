@@ -70,7 +70,7 @@ class DashboardFragment : Fragment() {
 
 
 
-    lateinit var btnCheckInternet : Button
+//    lateinit var btnCheckInternet : Button
     val bookInfoList = arrayListOf<Book>()
 
     lateinit var progressLayout : RelativeLayout
@@ -94,41 +94,41 @@ class DashboardFragment : Fragment() {
         
 
         //to check whether app got connected with internet or not
-        btnCheckInternet = view.findViewById(R.id.btnCheckInternet)
-        btnCheckInternet.setOnClickListener {
-            if(ConnectionManager().checkConnectivity(activity as Context)){
-                //internet is available
-                val dialog = AlertDialog.Builder(activity as Context)
-                dialog.setTitle("Success")
-                dialog.setMessage("Internet Connection found")
-                dialog.setPositiveButton("Ok"){
-                    text,listener ->
-                    //do nothing
-                }
-                dialog.setNegativeButton("Cancel"){
-                    text,listener->
-                    //do nothing
-                }
-                dialog.create()
-                dialog.show()
-
-            }else{
-                //internet is not available
-                val dialog = AlertDialog.Builder(activity as Context)
-                dialog.setTitle("Failed")
-                dialog.setMessage("Internet Connection not found")
-                dialog.setPositiveButton("Ok"){
-                        text,listener ->
-                    //do nothing
-                }
-                dialog.setNegativeButton("Cancel"){
-                        text,listener->
-                    //do nothing
-                }
-                dialog.create()
-                dialog.show()
-            }
-        }
+//        btnCheckInternet = view.findViewById(R.id.btnCheckInternet)
+//        btnCheckInternet.setOnClickListener {
+//            if(ConnectionManager().checkConnectivity(activity as Context)){
+//                //internet is available
+//                val dialog = AlertDialog.Builder(activity as Context)
+//                dialog.setTitle("Success")
+//                dialog.setMessage("Internet Connection found")
+//                dialog.setPositiveButton("Ok"){
+//                    text,listener ->
+//                    //do nothing
+//                }
+//                dialog.setNegativeButton("Cancel"){
+//                    text,listener->
+//                    //do nothing
+//                }
+//                dialog.create()
+//                dialog.show()
+//
+//            }else{
+//                //internet is not available
+//                val dialog = AlertDialog.Builder(activity as Context)
+//                dialog.setTitle("Failed")
+//                dialog.setMessage("Internet Connection not found")
+//                dialog.setPositiveButton("Ok"){
+//                        text,listener ->
+//                    //do nothing
+//                }
+//                dialog.setNegativeButton("Cancel"){
+//                        text,listener->
+//                    //do nothing
+//                }
+//                dialog.create()
+//                dialog.show()
+//            }
+//        }
 
 
         val queue = Volley.newRequestQueue(activity as Context)
@@ -164,12 +164,12 @@ class DashboardFragment : Fragment() {
 
 
                             //function to make row separation between items
-                            recyclerDashboard.addItemDecoration(
-                                DividerItemDecoration(
-                                    recyclerDashboard.context,
-                                    (layoutManager as LinearLayoutManager).orientation
-                                )
-                            )
+//                            recyclerDashboard.addItemDecoration(
+//                                DividerItemDecoration(
+//                                    recyclerDashboard.context,
+//                                    (layoutManager as LinearLayoutManager).orientation
+//                                )
+//                            )
                         }
                     }else{
                         Toast.makeText(activity as Context,"Some error occured!!!",Toast.LENGTH_SHORT).show()
