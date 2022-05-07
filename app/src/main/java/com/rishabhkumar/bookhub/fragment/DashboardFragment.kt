@@ -10,6 +10,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ProgressBar
+import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
@@ -71,6 +73,9 @@ class DashboardFragment : Fragment() {
     lateinit var btnCheckInternet : Button
     val bookInfoList = arrayListOf<Book>()
 
+    lateinit var progressLayout : RelativeLayout
+    lateinit var progressBar : ProgressBar
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -82,6 +87,11 @@ class DashboardFragment : Fragment() {
 
         layoutManager = LinearLayoutManager(activity)
 
+
+        progressLayout = view.findViewById(R.id.progressRelativeLayout)
+        progressBar = view.findViewById(R.id.progressBar)
+        progressLayout.visibility = View.VISIBLE
+        
 
         //to check whether app got connected with internet or not
         btnCheckInternet = view.findViewById(R.id.btnCheckInternet)
@@ -130,6 +140,7 @@ class DashboardFragment : Fragment() {
                 //here we will handle the response
                 // println("Response is $it")
                 try{
+                    progressBar.visibility = View.GONE
                     val sucsess = it.getBoolean("success")
                     if(sucsess){
                         val data = it.getJSONArray("data")
