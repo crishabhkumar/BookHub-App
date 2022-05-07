@@ -169,7 +169,9 @@ class DashboardFragment : Fragment() {
                 }
             },Response.ErrorListener {
                 //here we will handle the errors
-                println("Error is $it")
+                //volley error handled here
+                Toast.makeText(activity as Context,"Volley error occured",Toast.LENGTH_SHORT).show()
+                //println("Error is $it")
             }){
                 override fun getHeaders(): MutableMap<String, String> {
                     val headers = HashMap<String,String>();
