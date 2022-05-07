@@ -24,6 +24,7 @@ import com.rishabhkumar.bookhub.R
 import com.rishabhkumar.bookhub.adapter.DashboardRecyclerAdapter
 import com.rishabhkumar.bookhub.model.Book
 import com.rishabhkumar.bookhub.util.ConnectionManager
+import org.json.JSONException
 
 
 class DashboardFragment : Fragment() {
@@ -127,41 +128,45 @@ class DashboardFragment : Fragment() {
         if(ConnectionManager().checkConnectivity(activity as Context)){
             val jsonObjectRequest = object : JsonObjectRequest(Request.Method.GET, url,null, Response.Listener{
                 //here we will handle the response
-                val sucsess = it.getBoolean("success")
-                if(sucsess){
-                    val data = it.getJSONArray("data")
-                    for(i in 0 until data.length()){
-                        val bookJsonObject = data.getJSONObject(i)
-                        val bookObject = Book(
-                            bookJsonObject.getString("book_id"),
-                            bookJsonObject.getString("name"),
-                            bookJsonObject.getString("author"),
-                            bookJsonObject.getString("rating"),
-                            bookJsonObject.getString("price"),
-                            bookJsonObject.getString("image")
-                        )
-                        bookInfoList.add(bookObject)
-                        recyclerAdapter = DashboardRecyclerAdapter(activity as Context,bookInfoList)
-
-
-                        recyclerDashboard.adapter = recyclerAdapter
-
-                        recyclerDashboard.layoutManager = layoutManager
-
-
-                        //function to make row separation between items
-                        recyclerDashboard.addItemDecoration(
-                            DividerItemDecoration(
-                                recyclerDashboard.context,
-                                (layoutManager as LinearLayoutManager).orientation
-                            )
-                        )
-                    }
-                }else{
-                    Toast.makeText(activity as Context,"Some error occured!!!",Toast.LENGTH_SHORT).show()
-                }
                 // println("Response is $it")
+                try{
+                    val sucsess = it.getBoolean("success")
+                    if(sucsess){
+                        val data = it.getJSONArray("data")
+                        for(i in 0 until data.length()){
+                            val bookJsonObject = data.getJSONObject(i)
+                            val bookObject = Book(
+                                bookJsonObject.getString("book_id"),
+                                bookJsonObject.getString("name"),
+                                bookJsonObject.getString("author"),
+                                bookJsonObject.getString("rating"),
+                                bookJsonObject.getString("price"),
+                                bookJsonObject.getString("image")
+                            )
+                            bookInfoList.add(bookObject)
+                            recyclerAdapter = DashboardRecyclerAdapter(activity as Context,bookInfoList)
 
+
+                            recyclerDashboard.adapter = recyclerAdapter
+
+                            recyclerDashboard.layoutManager = layoutManager
+
+
+                            //function to make row separation between items
+                            recyclerDashboard.addItemDecoration(
+                                DividerItemDecoration(
+                                    recyclerDashboard.context,
+                                    (layoutManager as LinearLayoutManager).orientation
+                                )
+                            )
+                        }
+                    }else{
+                        Toast.makeText(activity as Context,"Some error occured!!!",Toast.LENGTH_SHORT).show()
+                    }
+
+                }catch(e : JSONException){
+                    Toast.makeText(activity as Context,"Some inexpected error occured!!!",Toast.LENGTH_SHORT).show()
+                }
             },Response.ErrorListener {
                 //here we will handle the errors
                 println("Error is $it")
