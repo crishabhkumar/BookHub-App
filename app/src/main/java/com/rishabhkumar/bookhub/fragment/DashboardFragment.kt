@@ -28,35 +28,38 @@ class DashboardFragment : Fragment() {
     lateinit var recyclerDashboard : RecyclerView
     lateinit var layoutManager :RecyclerView.LayoutManager
 
-    val bookList = arrayListOf(
-        "Anna Karenina",
-        "Madame Bovary",
-        "War and Peace",
-        "The Great Gatsby",
-        "Lolita",
-        "Middlemarch",
-        "The Adventures of Huckleberry Finn",
-        "The Stories of Anton Chekhov",
-        "In Search of Lost Time",
-        "Hamlet"
-    )
+
+    //static list of book names
+//    val bookList = arrayListOf(
+//        "Anna Karenina",
+//        "Madame Bovary",
+//        "War and Peace",
+//        "The Great Gatsby",
+//        "Lolita",
+//        "Middlemarch",
+//        "The Adventures of Huckleberry Finn",
+//        "The Stories of Anton Chekhov",
+//        "In Search of Lost Time",
+//        "Hamlet"
+//    )
 
 
     lateinit var recyclerAdapter : DashboardRecyclerAdapter
 
-    val bookInfoList = arrayListOf<Book>(
-        Book("Anna Karenina","Leo Tolstoy","Rs.249","4.5",R.drawable.image1),
-        Book("Madame Bovary","Gustave Flaubert","Rs.149","4.8",R.drawable.image2),
-        Book("War and Peace","Leo Tolstoy","Rs.199","3.9",R.drawable.image3),
-        Book("The Great Gatsby","F. Scott Fitzgerald","Rs.249","3.6",R.drawable.image4),
-        Book("Lolita","Vladimir Nabokov","Rs.199","4.1",R.drawable.image5),
-        Book("Middlemarch","George Eliot","Rs.349","4.6",R.drawable.image6),
-        Book("The Adventures of Huckleberry Finn","Mark Twain","Rs.249","4.4",R.drawable.image7),
-        Book("The Stories of Anton Chekhov","Anton Chekhov","Rs.299","4.6",R.drawable.image8),
-        Book("In Search of Lost Time","Marcel Proust","Rs.249","4.9",R.drawable.image9),
-        Book("Hamlet","William Shakespeare","Rs.399","4.9",R.drawable.image10),
 
-        )
+    //static list of book details
+//    val bookInfoList = arrayListOf<Book>(
+//        Book("Anna Karenina","Leo Tolstoy","Rs.249","4.5",R.drawable.image1),
+//        Book("Madame Bovary","Gustave Flaubert","Rs.149","4.8",R.drawable.image2),
+//        Book("War and Peace","Leo Tolstoy","Rs.199","3.9",R.drawable.image3),
+//        Book("The Great Gatsby","F. Scott Fitzgerald","Rs.249","3.6",R.drawable.image4),
+//        Book("Lolita","Vladimir Nabokov","Rs.199","4.1",R.drawable.image5),
+//        Book("Middlemarch","George Eliot","Rs.349","4.6",R.drawable.image6),
+//        Book("The Adventures of Huckleberry Finn","Mark Twain","Rs.249","4.4",R.drawable.image7),
+//        Book("The Stories of Anton Chekhov","Anton Chekhov","Rs.299","4.6",R.drawable.image8),
+//        Book("In Search of Lost Time","Marcel Proust","Rs.249","4.9",R.drawable.image9),
+//        Book("Hamlet","William Shakespeare","Rs.399","4.9",R.drawable.image10),
+//        )
 
 
 
@@ -145,6 +148,8 @@ class DashboardFragment : Fragment() {
                 return headers
             }
         }
+
+        queue.add(jsonObjectRequest)
 
         return view
     }
