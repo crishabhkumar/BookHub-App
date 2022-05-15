@@ -1,69 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/llContent"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="140dp"
+    android:layout_margin="6dp"
     android:background="#ffffff"
-    android:orientation="horizontal">
+    app:cardCornerRadius="4dp">
 
-    <ImageView
-        android:id="@+id/imgBook"
-        android:layout_width="100dp"
-        android:layout_height="120dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_about" />
+    <LinearLayout
+        android:id="@+id/llContent"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:background="#ffffff"
+        android:orientation="horizontal"
+        android:weightSum="6">
+
+        <!--Weight sum property is used to divide the layout into different parts and
+        then giving each layout a particular weight gives it that amount of space on the screen
+        -->
+        <!--since each parent layout will have a specific weight,
+        we need not give any width to those layout -->
+
+        <ImageView
+            android:id="@+id/imgBook"
+            android:layout_width="11dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:padding="5dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_about" />
 
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3.3">
 
-        <TextView
-            android:id="@+id/txtBookName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/imgBook"
-            android:padding="10dp"
-            android:text="List Item"
-            android:textColor="#000000"
-            android:textSize="18sp" />
+            <TextView
+                android:id="@+id/txtBookName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/imgBook"
+                android:padding="8dp"
+                android:text="List Item"
+                android:textColor="#000000"
+                android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/txtAuthorName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/txtBookName"
-            android:layout_toRightOf="@id/imgBook"
-            android:padding="10dp"
-            android:text="@string/name_of_author"
-            android:textColor="#000000"
-            android:textStyle="italic"
-            android:textSize="15sp" />
+            <TextView
+                android:id="@+id/txtAuthorName"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_below="@+id/txtBookName"
+                android:padding="8dp"
+                android:text="@string/name_of_author"
+                android:textSize="15sp"
+                android:textStyle="italic" />
 
-        <TextView
-            android:id="@+id/txtBookPrice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/txtAuthorName"
-            android:layout_toRightOf="@id/imgBook"
-            android:padding="10dp"
-            android:text="@string/price"
-            android:textColor="#1b5e20"
-            android:textSize="15dp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/txtBookPrice"
+                android:layout_width="86dp"
+                android:layout_height="50dp"
+                android:layout_below="@id/txtAuthorName"
+                android:layout_toRightOf="@id/imgBook"
+                android:padding="10dp"
+                android:text="@string/price"
+                android:textColor="#1b5e20"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/txtRating"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerInParent="true"
+            android:layout_weight="1.2"
             android:drawableStart="@drawable/ic_baseline_star_24"
+            android:drawablePadding="4dp"
+            android:padding="4dp"
             android:text="4.5"
             android:textColor="#F3A50A"
             android:textSize="15sp"
             android:textStyle="bold" />
-    </RelativeLayout>
+    </LinearLayout>
 
-
-</LinearLayout>
+</androidx.cardview.widget.CardView>

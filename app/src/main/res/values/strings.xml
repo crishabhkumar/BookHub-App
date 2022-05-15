@@ -14,5 +14,6 @@
     <string name="about_fragment">About Fragment</string>
     <string name="name_of_author">Name of Author</string>
     <string name="price">Rs. 299</string>
+    <string name="bookDescriptionDemo">this book is written by mr rishabh chaudhary</string>
 
 </resources>
